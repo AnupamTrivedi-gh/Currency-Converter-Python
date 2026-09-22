@@ -1,0 +1,2 @@
+[2026-09-22 10:46:36] 800.00 INR -> 8.34 USD (Rate Mode: Live API)
+[2026-09-22 10:48:29] 800.00 EUR -> 917.68 USD (Rate Mode: Live API)
