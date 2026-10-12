@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101828">
+  <title>Currency Converter | Phase 3</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Currency Converter home">
+        <span class="brand-icon">↔</span><span>Rate<span class="accent">Wise</span></span>
+      </a>
+      <span id="rateStatus" class="status"><span class="status-dot"></span> Checking rates…</span>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">SIMPLE · FAST · PRACTICAL</p>
+      <h1>Currency conversion,<br><span class="gradient-text">made clear.</span></h1>
+      <p class="subtitle">Convert currencies with live exchange rates and a built-in offline fallback.</p>
+    </section>
+
+    <section class="converter card" aria-labelledby="converterTitle">
+      <div class="card-heading">
+        <div><p class="eyebrow">CONVERTER</p><h2 id="converterTitle">Make a conversion</h2></div>
+        <span class="mini-badge">PYTHON POWERED</span>
+      </div>
+      <form id="convertForm">
+        <label for="amount">Amount</label>
+        <input id="amount" name="amount" type="number" min="0" step="any" placeholder="Enter amount" value="100" required>
+        <div class="currency-row">
+          <div class="currency-field">
+            <label for="source">From</label>
+            <select id="source" name="source" required><option value="USD">USD — US Dollar</option></select>
+          </div>
+          <button type="button" id="swapBtn" class="swap" aria-label="Swap currencies" title="Swap currencies">⇄</button>
+          <div class="currency-field">
+            <label for="target">To</label>
+            <select id="target" name="target" required><option value="INR">INR — Indian Rupee</option></select>
+          </div>
+        </div>
+        <button class="primary-btn" type="submit" id="convertBtn">Convert currency <span>→</span></button>
+      </form>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+      <section id="resultPanel" class="result-panel" hidden>
+        <p class="result-label">CONVERTED AMOUNT</p>
+        <p id="resultValue" class="result-value"></p>
+        <p id="resultMeta" class="result-meta"></p>
+      </section>
+    </section>
+
+    <section class="history card">
+      <div class="card-heading">
+        <div><p class="eyebrow">YOUR ACTIVITY</p><h2>Recent conversions</h2></div>
+        <button id="refreshHistory" class="text-btn" type="button">Refresh ↻</button>
+      </div>
+      <div id="historyList" class="history-list"><p class="muted">Loading history…</p></div>
+      <p class="footnote">History is saved locally on the server in <code>conversion_history.txt</code>.</p>
+    </section>
+    <footer>Currency Converter · Python Programming Lab · Phase III</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

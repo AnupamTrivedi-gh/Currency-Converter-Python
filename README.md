@@ -1,44 +1,56 @@
-# Currency Converter in Python
+# Currency Converter — Phase 3 Web Application
 
-An experiential learning project developed under the **Python Programming Lab (N-PCCCM304P)** curriculum at **S. B. Jain Institute of Technology, Management and Research, Nagpur** (Session 2026-27 ODD).
+A Python Flask web application for currency conversion, built on the Phase 2 project logic.
 
----
+## Features
+- Browser-based responsive interface
+- Live exchange rates from open.er-api.com, with offline fallback rates
+- Currency selection and swap controls
+- Input validation and helpful errors
+- Timestamped conversion history in `conversion_history.txt`
+- JSON API endpoints for currencies, conversion and history
 
-## 📌 Project Overview
-The **Currency Converter Application** converts values between global currencies accurately. It has evolved from a basic static rate script (Phase 1) into an interactive, menu-driven CLI application featuring live exchange rate API fetching, offline resilience, persistent file logging, and exception handling (Phase 2).
+## Requirements
+- Python 3.8+
+- Flask
 
----
+## Run locally (Windows)
+1. Open a terminal in this project folder.
+2. Create and activate a virtual environment (recommended):
+   ```powershell
+   py -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   ```
+3. Install dependency:
+   ```powershell
+   python -m pip install -r requirements.txt
+   ```
+4. Start the app:
+   ```powershell
+   python app.py
+   ```
+5. Open http://127.0.0.1:5000 in your browser.
 
-## 🚀 Features (Phase 1 & Phase 2)
+## Project structure
+```text
+Currency-Converter-Python/
+├── app.py
+├── main.py
+├── requirements.txt
+├── README.md
+├── conversion_history.txt   # created after a successful conversion
+├── templates/
+│   └── index.html
+└── static/
+    ├── style.css
+    └── app.js
+```
 
-* **Real-Time Exchange Rates:** Fetches live rates using standard Python networking (`urllib.request` and `json`).
-* **Offline Resilience:** Automatically switches to an internal fallback dictionary if internet connectivity is unavailable.
-* **Transaction Logging (File Handling):** Saves all conversions with timestamps to `conversion_history.txt`.
-* **History Viewer:** Allows users to view previous transactions directly from the application menu.
-* **Robust Input Validation:** Catches `ValueError` (invalid amounts, non-numeric input) and `KeyError` (unsupported currency codes).
-* **Currency Alias Support:** Supports standard 3-letter ISO codes (e.g., `USD`, `INR`, `EUR`).
+## API endpoints
+- `GET /api/currencies` — list supported currencies and rate source status
+- `POST /api/convert` — convert an amount (`amount`, `source`, `target`)
+- `GET /api/history` — recent saved conversions
 
----
-
-## 🛠️ Python Concepts Demonstrated
-
-1. **Data Structures:** Dictionaries for fallback rates and alias mappings.
-2. **Networking & APIs:** Consuming public REST APIs using `urllib.request` and parsing responses with `json`.
-3. **File Handling:** Appending transaction records using mode `'a'` and reading log entries with mode `'r'`.
-4. **Exception Handling:** Structured `try...except...finally` blocks for network calls, file operations, and type casting.
-5. **Control Flow & Functions:** Modular design with clean function signatures and a persistent interactive loop.
-
----
-
-## 💻 Installation & Usage
-
-### Prerequisites
-* Python 3.8 or higher installed on your machine.
-* No external third-party dependencies required (uses built-in standard libraries).
-
-### Running the Application
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/AnupamTrivedi-gh/Currency-Converter-Python.git](https://github.com/AnupamTrivedi-gh/Currency-Converter-Python.git)
-   cd Currency-Converter-Python
+## Notes
+- The offline fallback rates are hardcoded example values and can become outdated. The interface reports whether live or fallback rates are being used.
+- The development server is intended for local testing. Use a production WSGI server when deploying publicly.
